@@ -1,8 +1,8 @@
 name: 📈 Get all Spark Components
 
 on:
-  #schedule:
-  #  - cron: '0 0 * * *' # Daily at midnight UTC
+  schedule:
+    - cron: '0 23 * * *' # Daily at 11 P.M
   workflow_dispatch:
     
 env:
