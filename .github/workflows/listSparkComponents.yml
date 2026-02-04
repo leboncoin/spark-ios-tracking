@@ -1,0 +1,42 @@
+name: 📈 Get all Spark Components
+
+on:
+  #schedule:
+  #  - cron: '0 0 * * *' # Daily at midnight UTC
+  workflow_dispatch:
+    
+env:
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  clone-repos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Clone matching repositories
+        run: |
+          # List all repos and filter by pattern
+          repos=$(gh repo list leboncoin --limit 1000 --json name --jq '.[].name' | grep -E "spark-ios-component-.*")
+
+          # Clone each matching repo
+          for repo in $repos; do
+            echo "Cloning $repo..."
+            gh repo clone leboncoin/$repo
+          done
+
+      - name: List cloned repositories
+        run: ls -la
+
+      - name: Run component listing script
+        run: |
+          chmod +x script/list_spark_components.sh
+          ./script/list_spark_components.sh
+
+      - name: Upload component list artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spark-components-listing
+          path: spark-components-listing.txt
+          retention-days: 90
