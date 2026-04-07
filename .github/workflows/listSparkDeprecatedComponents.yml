@@ -1,4 +1,4 @@
-name: 📋 Get all Spark Components
+name: 📋 Get all Spark Deprecated Components
 
 on:
   schedule:
@@ -31,12 +31,12 @@ jobs:
 
       - name: Run component listing script
         run: |
-          chmod +x script/list_spark_components.sh
-          ./script/list_spark_components.sh
+          chmod +x script/list_deprecated_components.sh
+          ./script/list_deprecated_components.sh
 
       - name: Upload component list artifact
         uses: actions/upload-artifact@v6
         with:
-          name: spark-components-listing
-          path: spark-components-listing.txt
+          name: deprecated-components-listing
+          path: deprecated-components-listing.json
           retention-days: 90
