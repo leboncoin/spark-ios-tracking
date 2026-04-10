@@ -1,6 +1,8 @@
 name: 📋 Get all Spark Deprecated Components
 
 on:
+  push:
+    branches: ["main"]
   schedule:
     - cron: '0 23 * * *' # Daily at 11 P.M
   workflow_dispatch:
