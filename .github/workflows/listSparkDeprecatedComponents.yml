@@ -37,6 +37,6 @@ jobs:
       - name: Upload component list artifact
         uses: actions/upload-artifact@v6
         with:
-          name: deprecated-components-listing
-          path: deprecated-components-listing.json
+          name: spark-deprecated-components-listing
+          path: spark-deprecated-components-listing.json
           retention-days: 90
