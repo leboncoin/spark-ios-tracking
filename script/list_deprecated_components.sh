@@ -48,7 +48,7 @@ for component_dir in spark-ios-component-*/; do
 done
 
 # Generate output file
-OUTPUT_FILE="deprecated-components-listing.json"
+OUTPUT_FILE="spark-deprecated-components-listing.json"
 
 # Format the collected entries as JSON
 echo "[" > "$OUTPUT_FILE"
